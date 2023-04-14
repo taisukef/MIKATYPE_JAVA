@@ -12,8 +12,8 @@
 /* JAVAでは横軸がX座標、縦軸がY座標ですがこのソースコードでは横軸がY座標      */
 /* 縦軸がX座標です。                                                          */
 /*                                                                            */
-/* chromebook での使用を想定してポジション練習を小文字で表示してあります      */
-/* 大文字にしたい場合はソースコードを変更してください                         */
+/* chromebook での使用を想定してポジション練習を小文字で表示する場合                   */
+/* LOWMODE を true にしてください                                                */
 /*                                                                            */
 /* ************************************************************************** */
 import java.awt.Color;
@@ -47,6 +47,7 @@ import java.io.IOException;
 import java.awt.Toolkit;
 import java.awt.Image;
 public class MIKATYPE extends JFrame {
+	static boolean LOWMODE = false;
 
 	String MIKA_file_name_seiseki="mikatype.sei"; /* 成績ファイル名 読み込み用 */
 	String MIKA_file_name_seiseki2="mikatype.sei"; /* 成績ファイル名 書き込み用 */
@@ -117,29 +118,19 @@ public class MIKATYPE extends JFrame {
 		0,0
 	};
 	Timer MIKA_timer=new Timer(); /* ポジション練習 ランダム練習 英単語練習 ローマ字練習用 タイマー取得 */
-	String MIKA_c_pos1="1234567890"; /* キーボード 最上段 刻印文字列 */
-//	String MIKA_c_pos2="QWERTYUIOP";
-	String MIKA_c_pos2="qwertyuiop"; /* キーボード 上一段 刻印文字列 */
-//	String MIKA_c_pos3="ASDFGHJKL;";
-	String MIKA_c_pos3="asdfghjkl;"; /* キーボード ホームポジション 刻印文字列 */
-//	String MIKA_c_pos4="ZXCVBNM,.";
-	String MIKA_c_pos4="zxcvbnm,."; /* キーボード 下一段刻文字列印 */
+	String MIKA_c_pos1 = "1234567890"; /* キーボード 最上段 刻印文字列 */
+	String MIKA_c_pos2 = LOWMODE ? "qwertyuiop" : "QWERTYUIOP"; /* キーボード 上一段 刻印文字列 */
+	String MIKA_c_pos3 = LOWMODE ? "asdfghjkl;" : "ASDFGHJKL;"; /* キーボード ホームポジション 刻印文字列 */
+	String MIKA_c_pos4 = LOWMODE ? "zxcvbnm,." : "ZXCVBNM,."; /* キーボード 下一段刻文字列印 */
 	String[] MIKA_c_post={MIKA_c_pos1,MIKA_c_pos2,MIKA_c_pos3,MIKA_c_pos4}; /* キーボード刻印文字列テーブル */
-//	String MIKA_h_pos1="ASDFGHJKL";
-	String MIKA_h_pos1="asdfghjkl"; /* ホームポジション 練習文字列 */
-//	String MIKA_h_pos2="QWERTYUIOP";
-	String MIKA_h_pos2="qwertyuiop"; /* 上一段 練習文字列 */
-//	String MIKA_h_pos3="ASDFGHJKLQWERTYUIOP";
-	String MIKA_h_pos3="asdfghjklqwertyuiop"; /* ホームポジション＋上一段 練習文字列 */
-//	String MIKA_h_pos4="ZXCVBNM";
-	String MIKA_h_pos4="zxcvbnm"; /* 下一段 練習文字列 */
-//	String MIKA_h_pos5="ASDFGHJKLZXCVBNM";
-	String MIKA_h_pos5="asdfghjklzxcvbnm"; /* ホームポジション＋下一段 練習文字列 */
-//	String MIKA_h_pos6="ASDFGHJKLQWERTYUIOPZXCVBNM";
-	String MIKA_h_pos6="asdfghjklqwertyuiopzxcvbnm"; /* ホームポジション＋上一段＋下一段 練習文字列 */
-	String MIKA_h_pos7="1234567890"; /* 数字 練習文字列 */
-//	String MIKA_h_pos8="ASDFGHJKLQWERTYUIOPZXCVBNM1234567890";
-	String MIKA_h_pos8="asdfghjklqwertyuiopzxcvbnm1234567890"; /* 全段 練習文字列 */
+	String MIKA_h_pos1 = LOWMODE ? "asdfghjkl" : "ASDFGHJKL"; /* ホームポジション 練習文字列 */
+	String MIKA_h_pos2 = LOWMODE ? "qwertyuiop" : "QWERTYUIOP"; /* 上一段 練習文字列 */
+	String MIKA_h_pos3 = LOWMODE ? "asdfghjklqwertyuiop" : "ASDFGHJKLQWERTYUIOP"; /* ホームポジション＋上一段 練習文字列 */
+	String MIKA_h_pos4 = LOWMODE ? "zxcvbnm" : "ZXCVBNM"; /* 下一段 練習文字列 */
+	String MIKA_h_pos5 = LOWMODE ? "asdfghjklzxcvbnm" : "ASDFGHJKLZXCVBNM"; /* ホームポジション＋下一段 練習文字列 */
+	String MIKA_h_pos6 = LOWMODE ? "asdfghjklqwertyuiopzxcvbnm" : "ASDFGHJKLQWERTYUIOPZXCVBNM"; /* ホームポジション＋上一段＋下一段 練習文字列 */
+	String MIKA_h_pos7 = "1234567890"; /* 数字 練習文字列 */
+	String MIKA_h_pos8 = LOWMODE ? "asdfghjklqwertyuiopzxcvbnm1234567890" : "ASDFGHJKLQWERTYUIOPZXCVBNM1234567890"; /* 全段 練習文字列 */
 	String[] MIKA_h_pos={MIKA_h_pos1,MIKA_h_pos2,MIKA_h_pos3,MIKA_h_pos4,MIKA_h_pos5,MIKA_h_pos6,MIKA_h_pos7,MIKA_h_pos8}; /* ポジション練習 ランダム練習 練習文字列テーブル */
 	int[] MIKA_p_count=null; /* 練習回数配列 アドレス */
 	int[] MIKA_p_count_position={0,0,0,0,0,0,0,0}; /* ポジション練習 練習回数 */
@@ -5319,7 +5310,7 @@ int exec_func(Graphics g,char nChar) /* 一文字入力に対応した処理を�
 			x_pos=MIKA_pasciix[a-0x41]; /* アルファベット位置テーブルよりx位置取得 */
 			y_pos=MIKA_pasciiy[a-0x41]; /* アルファベット位置テーブルよりy位置取得 */
 		}
-		if(0x61<=a&&a<=0x7a) /* アルファベット小文字の場合 */
+		else if(0x61<=a&&a<=0x7a) /* アルファベット小文字の場合 */
 		{
 			x_pos=MIKA_pasciix[a-0x61]; /* アルファベット位置テーブルよりx位置取得 */
 			y_pos=MIKA_pasciiy[a-0x61];/* アルファベット位置テーブルよりy位置取得 */
