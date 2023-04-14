@@ -1,6 +1,6 @@
 # MIKATYPE
 
-美佳のタイプトレーナー JAVA版
+[美佳のタイプトレーナ](https://www.asahi-net.or.jp/~bg8j-immr/) JAVA版
 
 ## Usage
 
