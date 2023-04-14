@@ -47,7 +47,7 @@ import java.io.IOException;
 import java.awt.Toolkit;
 import java.awt.Image;
 public class MIKATYPE extends JFrame {
-
+	static String ENC = "UTF-8";
 	String MIKA_file_name_seiseki="mikatype.sei"; /* 成績ファイル名 読み込み用 */
 	String MIKA_file_name_seiseki2="mikatype.sei"; /* 成績ファイル名 書き込み用 */
 	String MIKA_file_name_kiroku="mikatype.log"; /* 練習時間記録ファイル名 追記用 */
@@ -2745,7 +2745,7 @@ String[] MIKA_kana_yomi2={
  		inktable(); /* キーボードの位置テーブル初期化 */
      	File file = new File(MIKA_file_name_seiseki); /* 成績ファイルオープン */
 		try {
-	         BufferedReader b_reader = new BufferedReader(new InputStreamReader(new FileInputStream(file),"Shift-JIS"));
+	         BufferedReader b_reader = new BufferedReader(new InputStreamReader(new FileInputStream(file),ENC));
 			err=rseiseki(b_reader,MIKA_seiseki); /* 練習成績ファイル読み込み */
 			if(err==0) convseiseki(MIKA_seiseki); /* 練習成績ファイルデータ変換 */
 			try{
@@ -4011,7 +4011,7 @@ int exec_func(Graphics g,char nChar) /* 一文字入力に対応した処理を�
 		err=0;
 		try {
 			file = new FileOutputStream(MIKA_file_name_seiseki2); /* 成績ファイルをオープン */
-	  	 	filewriter = new OutputStreamWriter(file,"SHIFT_JIS"); /* 成績ファイルの読み込みフォーマットをシフトJISに指定でオープン */
+	  	 	filewriter = new OutputStreamWriter(file,ENC); /* 成績ファイルの読み込みフォーマットをENCに指定でオープン */
 			bw = new BufferedWriter(filewriter);
 // 	  		System.out.printf("file_write\n");
 			time_i=timeinterval(MIKA_st_t,MIKA_lt_t); /* 練習開始から終了までの経過秒を取得 */
@@ -4076,7 +4076,7 @@ int exec_func(Graphics g,char nChar) /* 一文字入力に対応した処理を�
 		bw=null;
 		try {
 			file = new FileOutputStream(MIKA_file_name_kiroku,true); /* 追記モードで練習時間記録ファイルをオープン */
-	  	 	filewriter = new OutputStreamWriter(file,"SHIFT_JIS"); /* 練習時間記録ファイルの書き込みモードをシフトJISに指定 */
+	  	 	filewriter = new OutputStreamWriter(file,ENC); /* 練習時間記録ファイルの書き込みモードをENCに指定 */
 			bw = new BufferedWriter(filewriter);
 // 	  		System.out.printf("file_write\n");
 			bw.write(aa); /* 練習時間記録ファイルに練習記録メッセージを書き込み */
@@ -4117,7 +4117,7 @@ int exec_func(Graphics g,char nChar) /* 一文字入力に対応した処理を�
 		bw=null;
 		try {
 			file = new FileOutputStream(MIKA_file_name_hayasa,true); /* 追記モードで最高速度記録ファイルをオープン */
-	  	 	filewriter = new OutputStreamWriter(file,"SHIFT_JIS"); /* 最高速度記録ファイルの書き込みモードをシフトJISに設定 */
+	  	 	filewriter = new OutputStreamWriter(file,ENC); /* 最高速度記録ファイルの書き込みモードをENCに設定 */
 			bw = new BufferedWriter(filewriter);
 // 	  		System.out.printf("file_write\n");
 			bw.write(aa); /* 最高速度記録ファイルに最高速度記録メッセージを書き込み  */
