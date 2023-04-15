@@ -1,6 +1,6 @@
-public class MIKA_IchigoJam {
-  public static String NAME = "IchigoJam練習";
-  public static String[] SEQ = {
+export const MIKA_IchigoJam = {
+  NAME: "IchigoJam練習",
+  SEQ: [
     "LED",
     "WAIT",
     ":",
@@ -129,5 +129,6 @@ public class MIKA_IchigoJam {
     "WS.LED",
     "SWITCH",
     "USR"
-  };
+  ],
 }
+

@@ -1,6 +1,6 @@
-public class MIKA_Asm8086 {
-  public static String NAME = "８０８６アセンブラ練習";
-  public static String[] SEQ = {
+export const MIKA_Asm8086 = {
+  NAME: "８０８６アセンブラ練習",
+  SEQ: [
     "AAA",
     "AAD",
     "AAM",
@@ -174,5 +174,5 @@ public class MIKA_Asm8086 {
     "LENGTH",
     "SIZE",
     "WIDTH"
-  };
-}
+  ],
+};
